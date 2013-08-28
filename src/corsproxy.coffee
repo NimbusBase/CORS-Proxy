@@ -27,7 +27,9 @@ module.exports = (req, res, proxy) ->
 
   else
     # Handle CORS proper.
-
+    req.on('proxyError',()->
+      console.log 'proxyError encountered...'
+    )
     # do we have a target configured?
     module.exports.options = module.exports.options || {}
     if module.exports.options.target
